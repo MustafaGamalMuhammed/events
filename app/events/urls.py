@@ -3,5 +3,10 @@ from events import views
 
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('events/', views.EventListView.as_view(), name='events'),
+    path('events/create/', views.EventCreateView.as_view(), name='events.create'),
+    path('events/<int:pk>/', views.EventDetailView.as_view(), name='events.detail'),
+    path('events/<int:pk>/update', views.EventUpdateView.as_view(), name='events.update'),
+    path('events/<int:pk>/delete', views.EventDeleteView.as_view(), name='events.delete'),
+    path('', views.EventListView.as_view(), name='home'),
 ]
