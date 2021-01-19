@@ -5,3 +5,7 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+    
+    @property
+    def name(self):
+        return self.email.split('@')[0]

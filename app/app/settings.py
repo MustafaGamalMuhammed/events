@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # local
     'accounts.apps.AccountsConfig',
+    'events.apps.EventsConfig',
     # third party
     'allauth',
     'allauth.account',
