@@ -2,11 +2,21 @@
 
 {% block content %}
 <div class="signout">
-    <h1>Sign Out</h1>
-    <p>Are you sure you want to sign out?</p>
-    <form method="post" action="/accounts/logout/">
+    <h2>Sign Out</h2>
+
+    <form 
+        method="post" 
+        action="/accounts/logout/"
+        class="events-create">
         {% csrf_token %}
-        <button type="submit">Sign Out</button>
+
+        <div class="field">
+            <label>Are you sure you want to sign out?</label>
+
+            <div class="input create-event">
+                <button id="events-delete">Logout</button>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock content %}
