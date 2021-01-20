@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="delete">
+    <form action="{% url 'events.delete' pk=event.id %}" method="post">
+        {% csrf_token %}
+
+        <div class="field">
+            <div class="input">
+                <input type="submit" value="Delete"/>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

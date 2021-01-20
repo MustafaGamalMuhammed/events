@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="create">
+    <form action="{% url 'events.create' %}" method="post">
+        {% csrf_token %}
+
+        <input type="hidden" name="owner" value="{{ user.id }}">
+
+        <div class="field">
+            <label class="label" for="title">Title</label>
+            <div class="input">
+                <input type="text" name="title" id="title" maxlength="200" required>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="description">Description</label>
+            <div class="input">
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="date">Event Date & Time</label>
+            <div class="input">
+                <input type="datetime-local" name="date" id="date">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="input">
+                <input type="submit" value="Create"/>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

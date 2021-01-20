@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="update">
+    <form action="{% url 'events.update' pk=event.id %}" method="post">
+        {% csrf_token %}
+
+        <input type="hidden" name="owner" value="{{ user.id }}">
+
+        <div class="field">
+            <label class="label" for="title">Title</label>
+            <div class="input">
+                <input 
+                    type="text" 
+                    name="title" 
+                    id="title" 
+                    maxlength="200" 
+                    value="{{ event.title }}"
+                    required>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="description">Description</label>
+            <div class="input">
+                <textarea 
+                    name="description" 
+                    id="description" 
+                    cols="30" 
+                    rows="10"
+                    required>{{ event.description }}</textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="date">Event Date & Time</label>
+            <div class="input">
+                <input 
+                    type="datetime-local" 
+                    name="date" 
+                    id="date" 
+                    value={{ event.date|date:"Y-m-d\TH:i" }}
+                    required>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="input">
+                <input type="submit" value="Update"/>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

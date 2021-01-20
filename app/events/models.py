@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from accounts.models import CustomUser
 
 
@@ -21,3 +22,9 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('events.detail', args=[self.id,])
+
+    def is_owner(self, request):
+        return request.user == self.owner

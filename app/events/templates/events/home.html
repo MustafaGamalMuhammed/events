@@ -1,7 +1,33 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div id="home">
-    <h1>{{ user.name }}</h1>
+<div class="home">
+    {% for event in events %}
+        <div class="event">
+            <div>
+                <p class="title">
+                    <a href="{{ event.get_absolute_url }}">
+                        {{ event.title }}
+                    </a>
+                </p>
+                <p class="owner">
+                    Owner: {{ event.owner.name }}
+                </p>
+            </div>
+            <div class="body">
+                <p class="description">
+                    {{ event.description }}
+                </p>
+            </div>
+            <div class="info">
+                <p class="date">
+                    {{ event.date }}
+                </p>
+                <p class="participants">
+                    {{ event.participants.count }} participants
+                </p>
+            </div>
+        </div>
+    {% endfor %}
 </div>
 {% endblock content %}

@@ -1,0 +1,23 @@
+<nav>
+    <div class="logo">
+        <h1>
+            <a href="{% url 'home' %}">Event</a>
+        </h1>
+    </div>
+    <div class="nav-links">
+        <ul>
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="#">My Events</a>
+                </li>
+                <li>
+                    <a href="{% url 'account_logout' %}">Logout</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'account_login' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div> 
+</nav>

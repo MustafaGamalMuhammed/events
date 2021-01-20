@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="detail">
+    <div class="event">
+        <div>
+            <p class="title">
+                {{ event.title }}
+            </p>
+            <p class="owner">
+                Owner: {{ event.owner.name }}
+            </p>
+        </div>
+        <div class="body">
+            <p class="description">
+                {{ event.description }}
+            </p>
+        </div>
+        <div class="info">
+            <p class="date">
+                {{ event.date }}
+            </p>
+            <p class="participants">
+                {{ event.participants.count }} participants
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
