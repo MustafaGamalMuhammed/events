@@ -22,6 +22,22 @@ class EventListView(ListView):
     template_name = "events/home.html"
     ordering = "date"
     context_object_name = "events"
+    paginate_by = 10 
+
+    def get_queryset(self):
+        if self._myevents():
+            return self.request.user.events.all()
+        else:
+            return super().get_queryset()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myevents'] = self._myevents()
+
+        return context
+
+    def _myevents(self):
+        return self.request.user.is_authenticated and self.request.GET.get('myevents')
 
 
 class EventCreateView(LoginRequiredMixin, CreateView):

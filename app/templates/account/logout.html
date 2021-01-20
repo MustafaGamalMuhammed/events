@@ -1,0 +1,12 @@
+{% extends "events/layout.html" %}
+
+{% block content %}
+<div class="signout">
+    <h1>Sign Out</h1>
+    <p>Are you sure you want to sign out?</p>
+    <form method="post" action="/accounts/logout/">
+        {% csrf_token %}
+        <button type="submit">Sign Out</button>
+    </form>
+</div>
+{% endblock content %}

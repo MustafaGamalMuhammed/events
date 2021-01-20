@@ -1,7 +1,13 @@
-{% extends "layout.html" %}
+{% extends "events/layout.html" %}
 
 {% block content %}
 <div class="home">
+    <div class="create-event">
+        <a href="{% url 'events.create' %}">Create Event</a>
+    </div>
+
+    {% include "events/pagination.html" %}
+
     {% for event in events %}
         <div class="event">
             <div>
@@ -29,5 +35,7 @@
             </div>
         </div>
     {% endfor %}
+
+    {% include "events/pagination.html" %}
 </div>
 {% endblock content %}
