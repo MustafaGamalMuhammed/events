@@ -30,7 +30,10 @@ class EventListView(ListView):
         return the user's events otherwise return all events
         """
         if self._myevents():
-            return self.request.user.events.all()
+            owned_events = self.request.user.owned_events.all()
+            participating_events = self.request.user.events.all()
+
+            return  (owned_events | participating_events) 
         else:
             return super().get_queryset()
     
