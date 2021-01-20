@@ -150,6 +150,10 @@ nav ul li {
     margin: 30px auto;
 }
 
+#events-delete:hover {
+    cursor: pointer;
+}
+
 .redirect {
     text-align: center;
 }

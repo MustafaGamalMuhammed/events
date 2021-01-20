@@ -9,5 +9,7 @@ urlpatterns = [
     path('events/<int:pk>/update', views.EventUpdateView.as_view(), name='events.update'),
     path('events/<int:pk>/delete', views.EventDeleteView.as_view(), name='events.delete'),
     path('events/<int:pk>/join/', views.join_event, name="events.join"),
+    path('events/<int:pk>/withdraw/', views.withdraw_from_event, name="events.withdraw"),
+
     path('', views.EventListView.as_view(), name='home'),
 ]

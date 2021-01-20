@@ -28,9 +28,18 @@
 
     {% if not is_owner %}
         {% if is_participating %}
-            <div class="you-joined">
-                you joined.
-            </div>
+            <form 
+                action="{% url 'events.withdraw' pk=event.pk %}" 
+                method="post"
+                class="join-event">
+                {% csrf_token %}
+
+                <div class="field">
+                    <div class="input create-event">
+                        <button id="events-delete">Withdraw</button>
+                    </div>
+                </div>
+            </form>
         {% else %}
             <form 
                 action="{% url 'events.join' pk=event.pk %}" 

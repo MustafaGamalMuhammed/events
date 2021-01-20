@@ -92,3 +92,14 @@ def join_event(request, pk):
     event.participants.add(request.user)
 
     return redirect(event)
+
+
+@login_required
+@require_POST
+def withdraw_from_event(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    out = event.participants.remove(request.user)
+    print("out")
+    print(out)
+
+    return redirect(event)
