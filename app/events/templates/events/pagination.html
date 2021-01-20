@@ -8,6 +8,9 @@
                 <a href="?page=1">&lt;&lt;</a>
                 <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
             {% endif %}
+        {% else %}
+                <a href="#" class="inactive">&lt;</a>
+                <a href="#" class="inactive">&lt;&lt;</a>
         {% endif %}
 
         <span class="current">
@@ -22,6 +25,9 @@
                 <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
                 <a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
             {% endif %}
+        {% else %}
+                <a href="#" class="inactive">&gt;</a>
+                <a href="#" class="inactive">&gt;&gt;</a>
         {% endif %}
     </div>
 </div>

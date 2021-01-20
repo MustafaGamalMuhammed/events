@@ -25,6 +25,10 @@ class EventListView(ListView):
     paginate_by = 2
 
     def get_queryset(self):
+        """
+        If the user is authenticated and there is a myevents query parameter; 
+        return the user's events otherwise return all events
+        """
         if self._myevents():
             return self.request.user.events.all()
         else:
@@ -85,7 +89,6 @@ class EventDeleteView(OwnerRequiredMixin, DeleteView):
 @require_POST
 def join_event(request, pk):
     event = get_object_or_404(Event, pk=pk)
-
     event.participants.add(request.user)
 
     return redirect(event)
