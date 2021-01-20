@@ -12,6 +12,16 @@
         {% for event in events %}
             <div class="event">
                 <div class="header">
+                    {% if event.is_participanting %}
+                        <p class="is_participant">
+                            &check; participant
+                        </p>
+                    {% endif %}
+                    {% if event.is_owner %}
+                        <p class="is_participant">
+                            &check; owner
+                        </p>
+                    {% endif %}
                     <p class="title">
                         <a href="{{ event.get_absolute_url }}">
                             {{ event.title }}

@@ -34,9 +34,15 @@ class EventListView(ListView):
             owned_events = self.request.user.owned_events.all()
             participating_events = self.request.user.events.all()
 
-            return  (owned_events | participating_events) 
+            queryset = (owned_events | participating_events) 
         else:
-            return super().get_queryset()
+            queryset = super().get_queryset()
+
+        for q in queryset:
+            q.is_participanting = q._is_participating(self.request)
+            q.is_owner = q._is_owner(self.request)
+
+        return queryset
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -62,6 +68,7 @@ class EventCreateView(LoginRequiredMixin, CreateView):
 
         return super().form_invalid(form)
 
+
 class EventDetailView(DetailView):
     model = Event
     template_name = "events/detail.html"
@@ -69,8 +76,8 @@ class EventDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['is_owner'] = self.object.is_owner(self.request)
-        context['is_participating'] = self.object.is_participating(self.request)
+        context['is_owner'] = self.object._is_owner(self.request)
+        context['is_participating'] = self.object._is_participating(self.request)
 
         return context
 

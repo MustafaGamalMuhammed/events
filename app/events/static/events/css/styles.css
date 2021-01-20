@@ -175,3 +175,8 @@ h2 {
     list-style-type: none;
     color: red;
 }
+
+.is_participant {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
