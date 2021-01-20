@@ -8,33 +8,30 @@
 
     {% include "events/pagination.html" %}
 
-    {% for event in events %}
-        <div class="event">
-            <div>
-                <p class="title">
-                    <a href="{{ event.get_absolute_url }}">
-                        {{ event.title }}
-                    </a>
-                </p>
-                <p class="owner">
-                    Owner: {{ event.owner.name }}
-                </p>
+    <div class="events">
+        {% for event in events %}
+            <div class="event">
+                <div class="header">
+                    <p class="title">
+                        <a href="{{ event.get_absolute_url }}">
+                            {{ event.title }}
+                        </a>
+                    </p>
+                    <p class="owner">
+                        Owner: {{ event.owner.name }}
+                    </p>
+                </div>
+                <div class="info">
+                    <p class="date">
+                        {{ event.date }}
+                    </p>
+                    <p class="participants">
+                        {{ event.participants.count }} participants
+                    </p>
+                </div>
             </div>
-            <div class="body">
-                <p class="description">
-                    {{ event.description }}
-                </p>
-            </div>
-            <div class="info">
-                <p class="date">
-                    {{ event.date }}
-                </p>
-                <p class="participants">
-                    {{ event.participants.count }} participants
-                </p>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 
     {% include "events/pagination.html" %}
 </div>

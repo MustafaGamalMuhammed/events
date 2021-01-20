@@ -2,7 +2,11 @@
 
 {% block content %}
 <div class="update">
-    <form action="{% url 'events.update' pk=event.pk %}" method="post">
+    <form 
+        action="{% url 'events.update' pk=event.pk %}" 
+        method="post"
+        class="events-create">
+
         {% csrf_token %}
 
         <input type="hidden" name="owner" value="{{ user.id }}">
@@ -45,14 +49,16 @@
         </div>
 
         <div class="field">
-            <div class="input">
-                <input type="submit" value="Update"/>
+            <div class="input create-event">
+                <button>Update</button>
             </div>
         </div>
     </form>
 
-    <div>
-        <a href="{% url 'events.delete' pk=event.id %}">Delete Event</a>
+    <div class="create-event">
+        <a 
+            href="{% url 'events.delete' pk=event.id %}" 
+            id="events-delete">Delete Event</a>
     </div>
 </div>
 {% endblock content %}

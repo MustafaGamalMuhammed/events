@@ -3,7 +3,7 @@
 {% block content %}
 <div class="detail">
     <div class="event">
-        <div>
+        <div class="header">
             <p class="title">
                 {{ event.title }}
             </p>
@@ -28,19 +28,22 @@
 
     {% if not is_owner %}
         {% if is_participating %}
-            <div>
+            <div class="you-joined">
                 you joined.
             </div>
         {% else %}
-            <form action="{% url 'events.join' pk=event.pk %}" method="post">
+            <form 
+                action="{% url 'events.join' pk=event.pk %}" 
+                method="post"
+                class="join-event">
                 {% csrf_token %}
 
                 <input type="submit" value="Join Event">
             </form>
         {% endif %}
     {% else %}
-        <div>
-            <a href="{% url 'event.update' pk=event.pk %}">Update Event</a>
+        <div class="create-event">
+            <a href="{% url 'events.update' pk=event.pk %}">Update Event</a>
         </div>
     {% endif %}
 </div>

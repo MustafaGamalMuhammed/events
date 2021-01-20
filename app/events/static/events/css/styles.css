@@ -37,7 +37,9 @@ nav ul li {
     padding: 5px 10px;
 }
 
-.create-event a {
+.create-event a,
+.create-event button,
+.join-event input[type="submit"] {
     display: block;
     margin: auto;
     width: 250px;
@@ -48,4 +50,110 @@ nav ul li {
     color: white;
     background-color: #3FB27F;
     padding: 5px 10px;
+    border: none;
+    outline: none;
+}
+
+.create-event a:hover,
+.join-event input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+.pagination .step-links {
+    display: block;
+    width: 250px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.pagination .step-links a,
+.pagination .step-links span {
+    display: inline-block;
+    width: 30px;
+    text-decoration: none;
+    color: white;
+    background-color: #3FB27F;
+    font-weight: bold; 
+    padding: 5px;
+}
+
+.pagination .step-links span {
+    /* margin: auto; */
+    width: 80px;
+}
+
+.event {
+    max-width: 800px;
+    margin: 10px auto;
+    border: 1px solid #eee;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.event .header,
+.event .body,
+.event .info {
+    padding: 10px;
+}
+
+.event .header {
+    border-bottom: 1px solid #eee;
+}
+
+.event .header .title {
+    margin-bottom: 10px;
+}
+
+.event .body {
+    border-bottom: 1px solid #eee;
+}
+
+.event .info .date {
+    margin-bottom: 10px;
+}
+
+.you-joined {
+    text-align: center;
+    color: #3FB27F;
+    font-weight: bold;
+}
+
+.events-create {
+    max-width: 800px;
+    margin: auto;
+    border: 1px solid #eee;
+    padding: 10px;
+}
+
+.events-create label,
+.events-create textarea,
+.events-create input {
+    display: block;
+    width: 80%;
+    margin: 5px auto;
+    padding: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.events-create button {
+    margin: 20px auto;
+}
+
+.events-create button:hover {
+    cursor: pointer;
+}
+
+#events-delete {
+    background-color: tomato;
+    margin: 30px auto;
+}
+
+.redirect {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
 }

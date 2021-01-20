@@ -2,7 +2,11 @@
 
 {% block content %}
 <div class="create">
-    <form action="{% url 'events.create' %}" method="post">
+    <form 
+        action="{% url 'events.create' %}" 
+        method="post"
+        class="events-create">
+
         {% csrf_token %}
 
         <input type="hidden" name="owner" value="{{ user.id }}">
@@ -29,8 +33,8 @@
         </div>
 
         <div class="field">
-            <div class="input">
-                <input type="submit" value="Create"/>
+            <div class="input create-event">
+                <button>Create</button>
             </div>
         </div>
     </form>

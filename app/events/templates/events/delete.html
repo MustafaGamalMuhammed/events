@@ -2,12 +2,15 @@
 
 {% block content %}
 <div class="delete">
-    <form action="{% url 'events.delete' pk=event.id %}" method="post">
+    <form 
+        action="{% url 'events.delete' pk=event.id %}" 
+        method="post"
+        class="events-create">
         {% csrf_token %}
 
         <div class="field">
-            <div class="input">
-                <input type="submit" value="Delete"/>
+            <div class="input create-event">
+                <button id="events-delete">Delete</button>
             </div>
         </div>
     </form>

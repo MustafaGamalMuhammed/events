@@ -22,7 +22,7 @@ class EventListView(ListView):
     template_name = "events/home.html"
     ordering = "date"
     context_object_name = "events"
-    paginate_by = 10 
+    paginate_by = 2
 
     def get_queryset(self):
         if self._myevents():
