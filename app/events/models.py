@@ -27,4 +27,7 @@ class Event(models.Model):
         return reverse('events.detail', args=[self.id,])
 
     def is_owner(self, request):
-        return request.user == self.owner
+        return request.user.is_authenticated and request.user == self.owner
+
+    def is_participating(self, request):
+        return request.user.is_authenticated and self.participants.filter(pk=request.user.pk).exists()

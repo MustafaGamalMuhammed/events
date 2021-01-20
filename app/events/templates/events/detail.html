@@ -25,5 +25,23 @@
             </p>
         </div>
     </div>
+
+    {% if not is_owner %}
+        {% if is_participating %}
+            <div>
+                you joined.
+            </div>
+        {% else %}
+            <form action="{% url 'events.join' pk=event.pk %}" method="post">
+                {% csrf_token %}
+
+                <input type="submit" value="Join Event">
+            </form>
+        {% endif %}
+    {% else %}
+        <div>
+            <a href="{% url 'event.update' pk=event.pk %}">Update Event</a>
+        </div>
+    {% endif %}
 </div>
 {% endblock content %}

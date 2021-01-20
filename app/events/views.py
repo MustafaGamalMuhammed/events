@@ -6,10 +6,15 @@ from django.views.generic import (
     DetailView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.decorators.http import require_POST
+
 from events.models import Event
 from events.forms import EventForm
 from events.mixins import OwnerRequiredMixin
+from accounts.models import CustomUser
 
 
 class EventListView(ListView):
@@ -28,10 +33,17 @@ class EventCreateView(LoginRequiredMixin, CreateView):
         return reverse('events.detail', args=[self.object.id,])
 
 
-class EventDetailView(LoginRequiredMixin, DetailView):
+class EventDetailView(DetailView):
     model = Event
     template_name = "events/detail.html"
     context_object_name = "event"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_owner'] = self.object.is_owner(self.request)
+        context['is_participating'] = self.object.is_participating(self.request)
+
+        return context
 
 
 class EventUpdateView(OwnerRequiredMixin, UpdateView):
@@ -51,3 +63,13 @@ class EventDeleteView(OwnerRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('events')
+
+
+@login_required
+@require_POST
+def join_event(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+
+    event.participants.add(request.user)
+
+    return redirect(event)
