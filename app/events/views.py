@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
+from django.contrib import messages
 
 from events.models import Event
 from events.forms import EventForm
@@ -55,6 +56,11 @@ class EventCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('events.detail', args=[self.object.id,])
 
+    def form_invalid(self, form):
+        for error in form.errors:
+            messages.error(self.request, form.errors[error])
+
+        return super().form_invalid(form)
 
 class EventDetailView(DetailView):
     model = Event
@@ -77,6 +83,12 @@ class EventUpdateView(OwnerRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('events.detail', args=[self.object.id,])
+
+    def form_invalid(self, form):
+        for error in form.errors:
+            messages.error(self.request, form.errors[error])
+
+        return super().form_invalid(form)
 
 
 class EventDeleteView(OwnerRequiredMixin, DeleteView):
