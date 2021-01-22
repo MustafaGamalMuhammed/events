@@ -7,6 +7,6 @@ class OwnerRequiredMixin(AccessMixin):
 
         event = self.get_object()
 
-        if not request.user.is_authenticated or not event.is_owner(request):
+        if not request.user.is_authenticated or not event._is_owner(request):
             return self.handle_no_permission()
         return super().dispatch(request, *args, **kwargs)
